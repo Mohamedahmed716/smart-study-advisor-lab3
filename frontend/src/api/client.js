@@ -1,9 +1,13 @@
 import axios from 'axios';
 
-const IP_ADDRESS = '192.168.1.20'; 
-const BASE_URL = `http://${IP_ADDRESS}:8000/api`;
+// Pulls the URL from the local un-tracked .env file
+const BASE_URL = process.env.EXPO_PUBLIC_API_URL;
 
 export const fetchCourseRecommendations = async (payload) => {
+  if (!BASE_URL) {
+    throw new Error("Missing EXPO_PUBLIC_API_URL in .env file");
+  }
+
   try {
     const response = await axios.post(`${BASE_URL}/recommend/`, payload);
     return response.data;
