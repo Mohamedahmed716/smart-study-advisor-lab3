@@ -2,7 +2,7 @@ import json
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .gemeni_client import call_gemini
+from .llama_client import call_llama
 from .prompt_builder import build_prompt
 
 class AIRecommendationView(APIView):
@@ -11,7 +11,7 @@ class AIRecommendationView(APIView):
 
         try:
             prompt = build_prompt(preferences)
-            raw = call_gemini(prompt)
+            raw = call_llama(prompt)
             
             # Robustly strip markdown fences and extra whitespace
             cleaned = raw.strip()
@@ -37,6 +37,6 @@ class AIRecommendationView(APIView):
 
         return Response({
             "status": "success",
-            "message": "Recommendations from Gemini AI",
+            "message": "Recommendations from Llama 3.3",
             "recommendations": recommendations
         })

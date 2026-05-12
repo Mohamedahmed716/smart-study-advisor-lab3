@@ -57,7 +57,7 @@ export const AdvisorScreen = () => {
 
             <View style={[styles.toggleCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
               <Text style={{ color: colors.text, fontWeight: '600', fontSize: 16 }}>
-                Engine: <Text style={{ color: colors.primary }}>{isAiMode ? 'Gemini AI' : 'Prolog Inference'}</Text>
+                Engine: <Text style={{ color: colors.primary }}>{isAiMode ? 'Llama 3.3' : 'Prolog Inference'}</Text>
               </Text>
               <Switch value={isAiMode} onValueChange={setIsAiMode} trackColor={{ true: colors.primary }} />
             </View>
