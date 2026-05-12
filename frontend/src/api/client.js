@@ -9,7 +9,8 @@ export const fetchCourseRecommendations = async (payload) => {
   }
 
   try {
-    const response = await axios.post(`${BASE_URL}/recommend/`, payload);
+    const endpoint = payload.use_ai ? '/ai-recommend/' : '/recommend/';
+    const response = await axios.post(`${BASE_URL}${endpoint}`, payload);
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || "Failed to connect to backend");

@@ -7,6 +7,9 @@
     :- discontiguous level/2.
     :- discontiguous prefers/2.
     :- discontiguous completed/2.
+    :- dynamic level/2.
+    :- dynamic prefers/2.
+    :- dynamic completed/2.
 
     % ============================================================
     %  SECTION 1: COURSE FACTS

@@ -2,8 +2,7 @@ import os, requests
 from dotenv import load_dotenv
 load_dotenv()
 
-GEMINI_URL ="https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
-
+GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent"
 def call_gemini(prompt: str) -> str:
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
@@ -13,7 +12,10 @@ def call_gemini(prompt: str) -> str:
         resp = requests.post(
             GEMINI_URL,
             params={"key": api_key},
-            json={"contents": [{"parts": [{"text": prompt}]}]},
+            json={
+                "contents": [{"parts": [{"text": prompt}]}],
+                "generationConfig": {"temperature": 0.8}
+            },
             timeout=10
         )
         resp.raise_for_status()
